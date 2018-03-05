@@ -33,7 +33,8 @@ class GeolocationExample extends Component {
         <Text>Latitude: {this.state.latitude}</Text>
         <Text>Longitude: {this.state.longitude}</Text>
         {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
-        <Text style={{ marginTop: 15 }} onPress={() => Actions.componentMapReload()}>MONITORAR POSIÇÃO</Text>
+        <Text style={{ marginTop: 15 }} onPress={() => Actions.componentMapReload()}>MONITORAR POSIÇÃO NO MAPA</Text>
+        <Text style={{ marginTop: 15 }} onPress={() => Actions.componentMapReload2()}>MONITORAR POSIÇÃO</Text>
       </View>
     );
   }
