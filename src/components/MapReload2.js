@@ -15,6 +15,7 @@ class GeolocationExample extends Component {
       photos: null,
       num: 0,
       selected: [],
+      current: null
     };
   }
 
@@ -60,22 +61,26 @@ class GeolocationExample extends Component {
         this.setState({
           num: num,
           selected: images,
+          current: current.uri
         });
     
-        console.log(current);
-        console.log(this.state.selected);
+        console.log(current.uri);
+        console.log(this.state.current);
+        //console.log(this.state.selected[0].uri);
       }
 
-    _goSave() {
+    _goSave = () => {
         var form_data = new FormData();
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://192.168.0.104:8000/api/services/');
+        xhr.open('POST', 'http://localhost:8000/api/services/');
         var t = '[1]'
         form_data.append('service', 39);
         //form_data.append('images', file)
+        form_data.append('images', {type: 'image/jpeg', name: 'anything.jpg', uri: this.state.current})
         form_data.append('title', 'teste');
         form_data.append('content', 'teste');
-        // form_data.append('address', 1);
+        form_data.append('address', '[1]');
+        form_data.append('price', '200.00');
         // form_data.append('address', 1);
         form_data.append('category', t);
         //form_data.append('lol', '{type: "teste", scale: '+file+'}')
@@ -85,7 +90,7 @@ class GeolocationExample extends Component {
         //xhr.send(form_data);
 
 
-        fetch('http://192.168.0.104:8000/api/services/', { // Your POST endpoint
+        fetch('http://192.168.0.56:8000/api/services/', { // Your POST endpoint
             method: 'POST',
             headers: {
             // "Accept": "application/json",
